@@ -17,7 +17,7 @@ private EditorialRep editRep;
 public void validator(String nombre) throws Exception{
     
     if(nombre == null || nombre.isEmpty()){
-        throw new Exception("Nombre inválido.");
+        throw new Exception("El nombre no puede estar vacío.");
     }
 }
 
@@ -27,7 +27,7 @@ public Editorial save(String nombre) throws Exception{
     
    Editorial entity = new Editorial();
    entity.setNombre(nombre);
-   
+   entity.setAlta(true);
    return editRep.save(entity);
 }
 
@@ -52,11 +52,36 @@ public void delete(String id) throws Exception {
     Optional<Editorial> editOpt = editRep.findById(id);
     
     if(editOpt.isPresent()){
-        editRep.deleteById(id);
+        Editorial ed = editOpt.get();
+        ed.setAlta(false);
+//        editRep.deleteById(id);
     } else {
-        throw new Exception("No se pudo eliminar la editorial.");
+        throw new Exception("No se pudo dar de baja la editorial.");
     }
 }
+
+    @Transactional
+public void alta(String id) throws Exception{
+    Optional<Editorial> editOpt = editRep.findById(id);
+    
+    if(editOpt.isPresent()){
+        Editorial ed = editOpt.get();
+        ed.setAlta(true);
+    } else {
+        throw new Exception("No se pudo dar de alta la editorial.");
+    }
+}
+
+    @Transactional(readOnly = true)
+    public Editorial findOne(String id) throws Exception {
+        Optional<Editorial> editOpt = editRep.findById(id);
+
+        if (editOpt.isPresent()) {
+            return editRep.getById(id);
+        } else {
+            throw new Exception("No se encontró la editorial con el id indicado.");
+        }
+    }
 
 @Transactional(readOnly = true)
 public List<Editorial> findAll(){

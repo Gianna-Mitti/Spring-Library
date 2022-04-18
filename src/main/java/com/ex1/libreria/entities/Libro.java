@@ -19,7 +19,9 @@ private Integer anio;
 private Integer cant;
 private Integer prestados;
 private Integer restantes;
-private Date alta;
+private Boolean alta;
+//private Date alta;
+//private Date baja;
 @ManyToOne
 private Autor autor;
 @ManyToOne
@@ -28,7 +30,7 @@ private Editorial editorial;
     public Libro() {
     }
 
-    public Libro(String titulo, Integer anio, Integer cant, Integer prestados, Integer restantes, Date alta, Autor autor, Editorial editorial) {
+    public Libro(String titulo, Integer anio, Integer cant, Integer prestados, Integer restantes, Boolean alta, Autor autor, Editorial editorial) {
         this.titulo = titulo;
         this.anio = anio;
         this.cant = cant;
@@ -87,14 +89,14 @@ private Editorial editorial;
         this.restantes = restantes;
     }
 
-    public Date getAlta() {
+    public Boolean getAlta() {
         return alta;
     }
 
-    public void setAlta(Date alta) {
+    public void setAlta(Boolean alta) {
         this.alta = alta;
     }
-
+    
     public Autor getAutor() {
         return autor;
     }

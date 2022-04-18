@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital@1&display=swap" rel="stylesheet">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Germania+One&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="/Styles/index.css">
+        <title>Librería</title>
+    </head>
+    <body>
+
+        <div id="container">
+            <header>
+                <nav>
+                    <ul class="nav">
+                        <li>
+                            <a th:href="@{/book/list-book}">Ver libros</a>
+                        </li>
+
+                        <li>
+                            <a th:href="@{/author/list-author}">Ver autores</a>
+                        </li>
+
+                        <li>
+                            <a th:href="@{/editorial/list-edit}">Ver editoriales</a>
+                        </li>   
+
+                        <li sec:authorize="!isAuthenticated()">
+                            <a th:href="@{/client/form-client}">Registráte</a>
+                        </li>
+
+                        <li sec:authorize="!isAuthenticated()">
+                            <a th:href="@{/login}">Iniciá sesión</a>
+                        </li>    
+
+                        <li sec:authorize="hasRole('ADMIN')">
+                            <a th:href="@{/client/list}">Ver clientes</a>
+                        </li> 
+
+                        <li sec:authorize="hasRole('USER')">
+                            <a th:href="@{/client/modify}">Editar perfil</a>
+                        </li>
+                        
+                        <li sec:authorize="isAuthenticated()">
+                            <a th:href="@{/logout}">Logout</a>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+
+            <section class="msgSuccess">
+                <h1 th:if="${session.usersession != null}" th:text="${'¡Bienvenidx, '}" ></h1>
+                <br>
+                <h3 th:if="${session.usersession != null}" th:text="${session.usersession.nombre + ' ' + session.usersession.apellido + '!'}" id="msg2"></h3>
+            </section>      
+
+
+            <section class="titl">
+                <h1>BIBLIOTECA <br> VIRTUAL</h1>
+                <h2 id="title2">Scrolleá para recorrer <br> esta libreria digital</h2>
+            </section>
+
+            <div class="clearfix"></div>
+
+            <section class="l">
+
+                <article>
+
+                    <h2 class="book">LIBROS</h2>
+
+                    <p class="info">¿Sabías que los libros se utilizan para guardar 
+                        información desde hace miles de años? 
+                        <br>¡Los primeros tomos datan del <b>siglo III</b>!
+                        <br> Para ver la lista de libros que tenemos aquí, clickeá sobre el <u>botón naranja</u>.</p>
+
+                    <section class="bbutton">
+
+                        <a class="but" th:href="@{/book/list-book}">Ver LIBROS</a>
+
+                    </section>
+
+                    <!-- <div class="image"> -->
+                    <!-- <img class="image" src="Media/libros.jpg" alt="Varios libros..."> -->
+                    <!-- </div> -->
+
+                </article>
+
+                <div class="clearfix"></div>
+
+                <article>
+
+                    <h2 class="author">AUTORES</h2>
+
+                    <p class="info">¡Se conocen más de <b>1.000.000</b> (un millón) autores hoy en día! <br>
+                        Para conocer algunos de ellos, hacé click en el <u>botón de la derecha</u>.</p>
+
+                    <section class="bbutton">    
+                        <a class="but" th:href="@{/author/list-author}">Ver AUTORES</a>
+                    </section>
+
+                    <!-- <div class="image">
+                        <img src="Media/author1.jpg" width="150px" height="150px" alt="Bolígrafo escribiendo sobre papel.">
+                    </div> -->
+
+                </article>
+
+                <div class="clearfix"></div>
+
+                <article>
+
+                    <h2 class="edit">EDITORIALES</h2>
+
+                    <p class="info">¿Sabías que más de <b>12</b> editoriales rechazaron 
+                        a <b>J.K. Rowling</b> (la famosa escritora de la saga 
+                        <b>Harry Potter</b>), antes de lograr publicar su primer libro?
+                        <br>Presioná sobre el <u>botón adjunto</u> para mostrar nuestra lista de editoriales.</p>
+
+                    <section class="bbutton">
+                        <a class="but" th:href="@{/editorial/list-edit}">Ver EDITORIALES</a></li>
+                    </section>
+
+                    <!-- <div class="image">
+                        <img src="Media/edit.jpg" width="150px" height="150px" alt="Máquina de escribir."> -->
+
+                </article>
+
+            </section>
+
+        </div>
+
+    </body>
+</html>

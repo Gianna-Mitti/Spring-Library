@@ -14,12 +14,12 @@ public class Autor {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
     private String nombre;
-    private Date alta;
-
+    private Boolean alta;
+    
     public Autor() {
     }
 
-    public Autor(String nombre, Date alta) {
+    public Autor(String nombre, Boolean alta) {
         this.nombre = nombre;
         this.alta = alta;
     }
@@ -40,16 +40,16 @@ public class Autor {
         this.nombre = nombre;
     }
 
-    public Date getAlta() {
+    public Boolean getAlta() {
         return alta;
     }
 
-    public void setAlta(Date alta) {
+    public void setAlta(Boolean alta) {
         this.alta = alta;
     }
 
     @Override
     public String toString() {
-        return "Autor{ " + "id=" + id + ", nombre=" + nombre + ", alta=" + alta + '}';
+        return nombre;
     }
 }

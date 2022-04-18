@@ -1,0 +1,116 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+#container{
+    width: 100%;
+    margin: 0px auto;
+    background: rgb(229, 235, 168);
+}
+
+.nav{
+    list-style: none;
+    padding: 0px;
+    background-color: rgb(0, 0, 0);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.55);
+}
+
+.nav li{
+    font-size: 25px;
+    display: inline-block;
+}
+
+.nav li a{
+    color: aliceblue;
+    display: block;
+    margin: 20px;
+    text-decoration: none;
+}
+
+.nav li a:hover{
+    color: rgb(235, 110, 33);
+}
+
+.title{
+    text-align: center;
+}
+
+.title h1{
+    margin-top: 40px;
+    font-size: 50px;
+}
+
+.form{
+    text-align: center;
+}
+
+.form label{
+    font-size: 30px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
+}
+
+.formMarg{
+    margin-top: 50px;
+}
+
+.l1{
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 300px;
+    height: 30px;
+    box-shadow: 5px 5px 10px rgba(63, 61, 61, 0.698);
+    border: 1px solid rgb(56, 53, 53);
+}
+
+.l1:hover{
+    border-style: outset;
+    border-color: rgba(158, 62, 248, 0.877);
+    }
+
+
+.button{
+    align-items: center;
+    margin-top: 50px;
+    padding-bottom: 100px;
+}
+
+.save{
+    margin-right: 30px;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    color: blanchedalmond;
+    background-color: rgba(81, 160, 238, 0.843);
+    border-style: solid;
+    border-radius: 10%;
+    box-shadow: 5px 8px 10px rgba(0, 0, 0, 0.55);
+}
+
+.save:hover{
+    border-style: solid;
+    border-color: rgb(65, 17, 110);
+    background-color: rgba(154, 30, 255, 0.836);
+}
+
+.delete{
+    margin-left: 30px;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    color: blanchedalmond;
+    background-color: rgba(238, 91, 81, 0.843);
+    border-style: solid;
+    border-radius: 10%;
+    box-shadow: 5px 8px 10px rgba(0, 0, 0, 0.55);
+}
+
+.delete:hover{
+    border-style: solid;
+    border-color: rgb(65, 17, 110);
+    background-color: rgba(154, 30, 255, 0.836);
+}

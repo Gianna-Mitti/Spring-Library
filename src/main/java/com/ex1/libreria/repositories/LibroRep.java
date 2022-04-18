@@ -16,8 +16,8 @@ public List<Libro> buscarxISBN(@Param("isbn") String isbn);
 @Query("SELECT l FROM Libro l WHERE l.titulo = :titulo")
 public List<Libro> buscarxTitulo(@Param("titulo") String titulo);
 
-//@Query("SELECT l FROM Libro l WHERE l.titulo LIKE :'titulo%'")
-//public List<Libro> buscarxSaga(@Param("titulo") String titulo);
+@Query("SELECT l FROM Libro l WHERE l.titulo LIKE :titulo%")
+public List<Libro> buscarxSaga(@Param("titulo") String titulo);
 
 @Query("SELECT l FROM Libro l WHERE l.autor = :autor")
 public List<Libro> buscarxAutor(@Param("autor") String autor);

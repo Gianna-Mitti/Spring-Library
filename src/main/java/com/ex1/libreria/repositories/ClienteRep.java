@@ -11,8 +11,11 @@ import org.springframework.stereotype.Repository;
 public interface ClienteRep extends JpaRepository<Cliente, String> {
 
 @Query("SELECT c FROM Cliente c WHERE c.id = :id")
-public List<Cliente> buscarxId(@Param("id") String id);
+public Cliente buscarxId(@Param("id") String id);
 
 @Query("SELECT c FROM Cliente c WHERE c.dni = :dni")
-public List<Cliente> buscarxDNI(@Param("dni") Long dni);
+public Cliente buscarxDNI(@Param("dni") Long dni);
+
+@Query("SELECT c FROM Cliente c WHERE c.email = :email")
+public Cliente buscarxEmail(@Param("email") String email);
 }

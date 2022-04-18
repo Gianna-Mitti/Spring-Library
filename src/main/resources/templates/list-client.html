@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                            xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Styles/list-book.css">
+    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+    
+    <title>Lista de clientes</title>
+</head>
+<body>
+    <div id="container">
+        <header>
+            <nav>
+                <ul class="nav">
+                <li><a th:href="@{/index}">Inicio</a></li>
+                <li sec:authorize="hasRole('ADMIN')"><a th:href="@{/client/form}">Registrar cliente</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="titl">
+            <h1>Lista de clientes</h1>
+        </section>
+
+        <div class="clearfix"></div>
+
+        <section class="t">
+            <table >
+                <tr>
+                <th>DNI</th>
+                <th>Nombre/s</th>
+                <th>Apellido/s</th>
+                <th>E-mail</th>
+                <th>Teléfono</th>
+                <th>Rol</th>
+                <th>Activo</th>
+                <div sec:authorize="hasRole('ADMIN')">
+                <th>Editar</th>
+                <th>Alta</th>
+                <th>Baja</th>
+                </div>
+            </tr>            
+            
+            <tbody th:each="cliente : ${clientes}">
+            <tr>
+                <td th:text="${cliente.dni}"></td>
+                <td th:text="${cliente.nombre}"></td>
+                <td th:text="${cliente.apellido}"></td>
+                <td th:text="${cliente.email}"></td>
+                <td th:text="${cliente.te}"></td>
+                <td th:text="${cliente.rol}"></td>
+                
+                <td>
+	<i th:if="${cliente.alta}" class="fa fa-circle text-success" style="color:green;"></i>
+	<i th:unless="${cliente.alta}"   class="fa fa-circle" style="color:red;"></i>
+                </td>
+                
+            <div sec:authorize="hasRole('ADMIN')">
+                <td><a th:href= "@{/client/modify/__${cliente.id}__}"><i class="fas fa-feather-alt"></i></a></td> 
+                <td><a th:href= "@{/client/alta/__${cliente.id}__}"><i class="fa fa-arrow-up"></i></a></td>
+                <td><a th:href= "@{/client/baja/__${cliente.id}__}"><i class="fa fa-ban"></i></a></td> 
+            </div>
+<!--           <td><input  th:href= "@{/author/baja/__${autor.id}__}" class="delete" type="button" value="Dar de baja"></a></td>-->
+            </tr>
+            </tbody>
+            </table>
+        </section>
+
+<!--        <div class="clearfix"></div>
+
+        <section class="question">
+            <h3>¿No encontraste el libro que buscabas?</h3>
+            <div sec:authorize="hasAnyRole('ADMIN', 'USER')">
+            <a th:href="@{/book/form-book}">¡Registrálo ACÁ!</a>
+            </div>
+        </section>
+    </div>-->
+    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+</body>
+</html>

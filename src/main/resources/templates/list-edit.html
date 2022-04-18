@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Styles/list-edit.css">
+    
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+    
+    <title>Lista de editoriales</title>
+</head>
+<body>
+    <div id="container">
+        <header>
+            <nav>
+                <ul class="nav">
+                <li><a th:href="@{/index}">Inicio</a></li>
+                <li sec:authorize="hasAnyRole('ADMIN', 'USER')"><a th:href="@{/editorial/form-edit}">Registrar editorial</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="titl">
+            <h1>Lista de editoriales</h1>
+        </section>
+
+        <div class="clearfix"></div>
+
+        <section class="t">
+            <table>
+                <tr >
+                <th >Nombre</th>
+                <th>Activo</th>
+                <div sec:authorize="hasRole('ADMIN')">
+                <th>Editar</th>
+                <th>Alta</th>
+                <th>Baja</th>
+                </div>
+            </tr>
+
+            <tbody th:each="editorial : ${editoriales}">
+            <tr>
+                <td th:text="${editorial.nombre}"></td>
+                
+                <td>
+	<i th:if="${editorial.alta}" class="fa fa-circle text-success" style="color:green;"></i>
+	<i th:unless="${editorial.alta}"   class="fa fa-circle" style="color:red;"></i>
+                </td>
+                
+            <div sec:authorize="hasRole('ADMIN')">
+                <td><a th:href= "@{/editorial/modify/__${editorial.id}__}"><i class="fas fa-feather-alt"></i></a></td>
+                <td><a th:href= "@{/editorial/alta/__${editorial.id}__}"><i class="fa fa-arrow-up"></i></a></td>
+                <td><a th:href= "@{/editorial/baja/__${editorial.id}__}"><i class="fa fa-ban"></i></a></td> 
+            </div>
+            
+            </tr>
+            </tbody>
+            </table>
+        </section>
+
+        <div class="clearfix"></div>
+
+        <section class="question">
+            <h3>¿No encontraste la editorial que buscabas?</h3>
+            <div sec:authorize="hasAnyRole('ADMIN', 'USER')">
+            <a th:href="@{/editorial/form-edit}">¡Registrála ACÁ!</a>
+            <div>
+        </section>
+    </div>
+    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+</body>
+</html>

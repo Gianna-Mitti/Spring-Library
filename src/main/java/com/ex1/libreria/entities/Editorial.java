@@ -1,6 +1,5 @@
 package com.ex1.libreria.entities;
 
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,12 +13,12 @@ public class Editorial {
 @GenericGenerator(name = "uuid", strategy = "uuid2")
 private String id;
 private String nombre;
-private Date alta;
+private Boolean alta;
 
     public Editorial() {
     }
 
-    public Editorial(String nombre, Date alta) {
+    public Editorial(String nombre, Boolean alta) {
         this.nombre = nombre;
         this.alta = alta;
     }
@@ -40,17 +39,17 @@ private Date alta;
         this.nombre = nombre;
     }
 
-    public Date getAlta() {
+    public Boolean getAlta() {
         return alta;
     }
 
-    public void setAlta(Date alta) {
+    public void setAlta(Boolean alta) {
         this.alta = alta;
     }
 
     @Override
     public String toString() {
-        return "Editorial{ " + "id=" + id + ", nombre=" + nombre + ", alta=" + alta + '}';
+        return nombre;
     }
 
 }
